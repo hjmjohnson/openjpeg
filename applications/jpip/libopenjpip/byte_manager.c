@@ -55,7 +55,7 @@ Byte_t * fetch_bytes( int fd, OPJ_OFF_T offset, OPJ_SIZE_T size)
 
   if( lseek( fd, offset, SEEK_SET)==-1){
     fprintf( FCGI_stdout, "Reason: Target broken (fseek error)\r\n");
-    fprintf( FCGI_stderr, "Error: error in fetch_bytes( %d, %ld, %lu)\n", fd, offset, size);
+    fprintf( FCGI_stderr, "Error: error in fetch_bytes( %d, %lld, %lu)\n", fd, offset, size);
     return NULL;
   }
   
@@ -64,7 +64,7 @@ Byte_t * fetch_bytes( int fd, OPJ_OFF_T offset, OPJ_SIZE_T size)
   if( (OPJ_SIZE_T)read( fd, data, size) != size){
     free( data);
     fprintf( FCGI_stdout, "Reason: Target broken (read error)\r\n");
-    fprintf( FCGI_stderr, "Error: error in fetch_bytes( %d, %ld, %lu)\n", fd, offset, size);
+    fprintf( FCGI_stderr, "Error: error in fetch_bytes( %d, %lld, %lu)\n", fd, offset, size);
     return NULL;
   }
   return data;
@@ -76,13 +76,13 @@ Byte_t fetch_1byte( int fd, OPJ_OFF_T offset)
 
   if( lseek( fd, offset, SEEK_SET)==-1){
     fprintf( FCGI_stdout, "Reason: Target broken (seek error)\r\n");
-    fprintf( FCGI_stderr, "Error: error in fetch_1byte( %d, %ld)\n", fd, offset);
+    fprintf( FCGI_stderr, "Error: error in fetch_1byte( %d, %lld)\n", fd, offset);
     return 0;
   }
    
   if( read( fd, &code, 1) != 1){
     fprintf( FCGI_stdout, "Reason: Target broken (read error)\r\n");
-    fprintf( FCGI_stderr, "Error: error in fetch_bytes( %d, %ld)\n", fd, offset);
+    fprintf( FCGI_stderr, "Error: error in fetch_bytes( %d, %lld)\n", fd, offset);
     return 0;
   }
   return code;
@@ -94,7 +94,7 @@ Byte2_t fetch_2bytebigendian( int fd, OPJ_OFF_T offset)
   Byte2_t code;
 
   if(!(data = fetch_bytes( fd, offset, 2))){
-    fprintf( FCGI_stderr, "Error: error in fetch_2bytebigendian( %d, %ld)\n", fd, offset);
+    fprintf( FCGI_stderr, "Error: error in fetch_2bytebigendian( %d, %lld)\n", fd, offset);
     return 0;
   }
   code = big2(data);
@@ -109,7 +109,7 @@ Byte4_t fetch_4bytebigendian( int fd, OPJ_OFF_T offset)
   Byte4_t code;
 
   if(!(data = fetch_bytes( fd, offset, 4))){
-    fprintf( FCGI_stderr, "Error: error in fetch_4bytebigendian( %d, %ld)\n", fd, offset);
+    fprintf( FCGI_stderr, "Error: error in fetch_4bytebigendian( %d, %lld)\n", fd, offset);
     return 0;
   }
   code = big4(data);
@@ -124,7 +124,7 @@ Byte8_t fetch_8bytebigendian( int fd, OPJ_OFF_T offset)
   Byte8_t code;
 
   if(!(data = fetch_bytes( fd, offset, 8))){
-    fprintf( FCGI_stderr, "Error: error in fetch_8bytebigendian( %d, %ld)\n", fd, offset);
+    fprintf( FCGI_stderr, "Error: error in fetch_8bytebigendian( %d, %lld)\n", fd, offset);
     return 0;
   }
   code = big8(data);

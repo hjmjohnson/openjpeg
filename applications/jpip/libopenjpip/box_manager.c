@@ -205,7 +205,7 @@ box_param_t * gene_boxbyType( int fd, OPJ_OFF_T offset, OPJ_SIZE_T length, const
 	  free(data2);
 	}
 	else{
-	  fprintf( FCGI_stderr, "Error: error in gene_boxbyType( %d, %" PRId64 ", %" PRId64 ", %s)\n", fd, offset, length, TBox);
+	  fprintf( FCGI_stderr, "Error: error in gene_boxbyType( %d, %" PRId64 ", %" SIZE_T_FORMAT ", %s)\n", fd, offset, length, TBox);
 	  return NULL;
 	}
       }
@@ -223,7 +223,7 @@ box_param_t * gene_boxbyType( int fd, OPJ_OFF_T offset, OPJ_SIZE_T length, const
       free( data);
     }
     else{
-      fprintf( FCGI_stderr, "Error: error in gene_boxbyType( %d, %" PRId64 ", %" PRId64 ", %s)\n", fd, offset, length, TBox);
+      fprintf( FCGI_stderr, "Error: error in gene_boxbyType( %d, %" PRId64 ", %" SIZE_T_FORMAT ", %s)\n", fd, offset, length, TBox);
       return NULL;
     }
     assert( ((Byte8_t)pos+boxlen)>=(Byte8_t)pos);
@@ -289,7 +289,7 @@ box_param_t * gene_childboxbyType( box_param_t *superbox, OPJ_OFF_T offset, cons
   assert( offset >= 0 );
   if( DBOXlen < (OPJ_SIZE_T)offset )
     {
-    fprintf( FCGI_stderr, "Error: Impossible happen %lu < %ld\n", DBOXlen, offset);
+    fprintf( FCGI_stderr, "Error: Impossible happen %lu < %lld\n", DBOXlen, offset);
     return NULL;
     }
   return gene_boxbyType( superbox->fd, get_DBoxoff( superbox)+offset, DBOXlen-(OPJ_SIZE_T)offset, TBox);

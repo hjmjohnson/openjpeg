@@ -40,4 +40,6 @@
 #endif
 #endif
 
+#define SIZE_T_FORMAT "zd"
+
 #endif /* OPJ_INTTYPES_H */

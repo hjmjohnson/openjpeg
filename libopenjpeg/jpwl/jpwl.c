@@ -108,7 +108,7 @@ void jpwl_epc_write(opj_j2k_t *j2k, jpwl_epc_ms_t *epcmark, unsigned char *buf);
 @param esd pointer to the ESD MS
 @param buf pointer to the memory buffer
 */
-void jpwl_esd_write(opj_j2k_t *j2k, jpwl_esd_ms_t *esdmark, unsigned char *buf);
+void jpwl_esd_write(opj_j2k_t *j2k, jpwl_esd_ms_t *esd, unsigned char *buf);
 
 /*-----------------------------------------------------------------*/
 

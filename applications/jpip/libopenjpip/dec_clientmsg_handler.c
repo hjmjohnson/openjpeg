@@ -50,7 +50,7 @@ void handle_JPIPstreamMSG( SOCKET connected_socket, cachelist_param_t *cachelist
   
   newjpipstream = receive_JPIPstream( connected_socket, &target, &tid, &cid, &newstreamlen);
 
-  fprintf( stderr, "newjpipstream length: %" PRIu64 "\n", newstreamlen);
+  fprintf( stderr, "newjpipstream length: %" SIZE_T_FORMAT "\n", newstreamlen);
   
   parse_JPIPstream( newjpipstream, newstreamlen, (OPJ_OFF_T)*streamlen, msgqueue);
 
